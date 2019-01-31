@@ -1,38 +1,41 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import {createStore} from "redux";
-import {Provider} from "react-redux";
+import {bindActionCreators, createStore} from "redux";
+import {connect, Provider} from "react-redux";
 import rootReducer from "./store/reducers";
-import App from "./app";
-import APP_STORAGE_KEY from "./constants";
+import defaultState from "./store/defaultState";
+import PomodoroTaskList from "./components";
+import {
+  addTaskAction,
+  clearCompleteAction,
+  completeTaskAction,
+  moveTaskAction,
+  removeTaskAction,
+  timerCompleteAction
+} from "./store/actionCreators";
 
+const mapStateToProps = state => ({
+  onBreak: state.onBreak,
+  timerDuration: state.timerDuration,
+  tasks: state.tasks
+});
 
-const defaultState = (() => {
-  const state = {
-    tasks: [],
-    secondsRemaining: 25 * 60,
-    onBreak: false,
-    timerPaused: true
-  };
-
-  // TODO: re-add this feature
-  // if (window.localStorage) {
-  //   let cachedState;
-  //   try {
-  //     cachedState = JSON.parse(window.localStorage.getItem(APP_STORAGE_KEY));
-  //     state = {...state, cachedState} || state;
-  //   } catch (error) {
-  //     window.localStorage.clear();
-  //   }
-  // }
-  return state;
-})();
+const mapDispatchToProps = dispatch => bindActionCreators({
+  addTaskAction,
+  clearCompleteAction,
+  completeTaskAction,
+  moveTaskAction,
+  removeTaskAction,
+  timerCompleteAction
+}, dispatch);
 
 const store = createStore(
   rootReducer,
   defaultState,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
+
+const App = connect(mapStateToProps, mapDispatchToProps)(PomodoroTaskList);
 
 ReactDOM.render(
   <Provider store={store}>

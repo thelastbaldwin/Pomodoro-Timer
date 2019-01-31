@@ -40,6 +40,22 @@ exports.devServer = ({host, port} = {}) => ({
   }
 });
 
+exports.fileLoader = () => ({
+  module: {
+    rules: [
+      {
+        test: /\.(png|jpg|gif|mp4)$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {}
+          }
+        ]
+      }
+    ]
+  }
+});
+
 exports.loadCSS = ({include, exclude} = {}) => ({
   module: {
     rules: [
@@ -56,7 +72,7 @@ exports.loadCSS = ({include, exclude} = {}) => ({
             options: {
               importLoaders: 1,
               modules: true,
-              localIdentName: "[name]_[hash:base64:5]"
+              localIdentName: "[name]_[local][hash:base64:5]"
             }
           },
           {
@@ -93,7 +109,7 @@ exports.buildJs = (env) => {
         {
           test: /\.jsx?$/,
           enforce: "pre",
-          exclude: [/dist/, /node_modules/],
+          exclude: [/dist/, /node_modules/, /.spec.js/],
           use
         },
         {

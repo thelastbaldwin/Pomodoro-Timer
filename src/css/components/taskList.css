@@ -5,46 +5,46 @@
   padding: 1em 0;
 }
 
-input{
+.container input{
   color: #333;
 }
 
-input::-webkit-input-placeholder {
+.container input::-webkit-input-placeholder {
   color: #e3e3e3;
 }
 
-input::-moz-input-placeholder {
+.container input::-moz-input-placeholder {
   color: #e3e3e3;
 }
 
-input,
-fieldset {
+.container input,
+.container fieldset {
   border: 1px solid #e3e3e3;
   box-shadow: -1px 1px 3px #333;
 }
 
 /* form styles*/
-form{
+.container form{
   margin-top: 1rem;
 }
 
-fieldset {
+.container fieldset {
   margin: 0 auto;
   padding: 1rem;
 }
 
-legend {
+.container legend {
   font-size: 1.6em;
 }
 
-input {
+.container input {
   width: 60%;
   margin-right: 6%;
   font-size: 1.6em;
   text-indent: .3em;
 }
 
-input[type="submit"] {
+.container input[type="submit"] {
   margin: 0;
   width: 33%;
   text-indent: 0;
@@ -60,4 +60,12 @@ input[type="submit"] {
   margin: 0 auto;
   padding: 0;
   list-style: none;
+}
+
+.clear {
+  margin-top: 1rem;
+  font-size: 1.4em;
+  background: none;
+  border: none;
+  float: right;
 }

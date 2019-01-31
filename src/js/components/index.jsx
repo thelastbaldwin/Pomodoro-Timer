@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styles from "../../css/components/pomodoroTaskList.css";
+import styles from "../../css/components/index.css";
 import TaskList from "./taskList";
 import Timer from "./timer";
 
@@ -8,27 +8,27 @@ const PomodoroTaskList = (props) => {
   const {
     tasks,
     addTaskAction,
+    clearCompleteAction,
     completeTaskAction,
     moveTaskAction,
     onBreak,
     removeTaskAction,
-    secondsRemaining,
-    setPauseAction,
-    tickAction,
+    timerCompleteAction,
+    timerDuration,
     timerPaused
   } = props;
 
   return (
     <div className={styles.container}>
       <Timer
-        secondsRemaining={secondsRemaining}
+        duration={timerDuration}
         onBreak={onBreak}
         paused={timerPaused}
-        tickAction={tickAction}
-        setPauseAction={setPauseAction}
+        timerCompleteAction={timerCompleteAction}
       />
       <TaskList
         addTaskAction={addTaskAction}
+        clearCompleteAction={clearCompleteAction}
         completeTaskAction={completeTaskAction}
         removeTaskAction={removeTaskAction}
         moveTaskAction={moveTaskAction}
@@ -39,29 +39,29 @@ const PomodoroTaskList = (props) => {
 }
 
 PomodoroTaskList.defaultProps = {
-  secondsRemaining: 0,
   addTaskAction: () => {},
+  clearCompleteAction: () => {},
   completeTaskAction: () => {},
-  removeTaskAction: () => {},
   moveTaskAction: () => {},
-  setPauseAction: () => {},
-  tickAction: () => {},
-  tasks: []
+  removeTaskAction: () => {},
+  tasks: [],
+  timerCompleteAction: () => {},
+  timerDuration: 0
 };
 
 PomodoroTaskList.propTypes = {
   addTaskAction: PropTypes.func,
+  clearCompleteAction: PropTypes.func,
   completeTaskAction: PropTypes.func,
   moveTaskAction: PropTypes.func,
   onBreak: PropTypes.bool,
   removeTaskAction: PropTypes.func,
-  secondsRemaining: PropTypes.number,
-  setPauseAction: PropTypes.func,
+  timerCompleteAction: PropTypes.func,
+  timerDuration: PropTypes.number,
   tasks: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string,
     complete: PropTypes.bool
   })),
-  tickAction: PropTypes.func,
   timerPaused: PropTypes.bool
 };
 

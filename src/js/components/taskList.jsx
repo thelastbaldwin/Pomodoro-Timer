@@ -49,6 +49,7 @@ class TaskList extends React.Component {
   render() {
     const {
       tasks,
+      clearCompleteAction,
       addTaskAction
     } = this.props;
 
@@ -77,6 +78,13 @@ class TaskList extends React.Component {
             />
             <input type="submit" value="+" />
           </fieldset>
+          <button
+            className={styles.clear}
+            type="button"
+            onClick={clearCompleteAction}
+          >
+            Clear Completed
+          </button>
         </form>
       </div>
     );
@@ -85,6 +93,7 @@ class TaskList extends React.Component {
 
 TaskList.defaultProps = {
   addTaskAction: () => {},
+  clearCompleteAction: () => {},
   completeTaskAction: () => {},
   removeTaskAction: () => {},
   moveTaskAction: () => {},
@@ -93,6 +102,7 @@ TaskList.defaultProps = {
 
 TaskList.propTypes = {
   addTaskAction: PropTypes.func,
+  clearCompleteAction: PropTypes.func,
   completeTaskAction: PropTypes.func,
   removeTaskAction: PropTypes.func,
   moveTaskAction: PropTypes.func,

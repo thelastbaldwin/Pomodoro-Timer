@@ -30,7 +30,8 @@ const commonConfig = merge([
     plugins: [
       htmlPlugin
     ]
-  }
+  },
+  parts.fileLoader()
 ]);
 
 const productionConfig = merge([
@@ -65,13 +66,13 @@ const developmentConfig = merge([
     port: process.env.PORT
   }),
   parts.generateSourceMaps("cheap-module-eval-source-map"),
-  {watch: true},
+  {watch: true}
 ]);
 
-module.exports = mode => {
+module.exports = (mode) => {
   if (mode === "production") {
-    return merge(commonConfig, productionConfig, { mode });
+    return merge(commonConfig, productionConfig, {mode});
   }
 
-  return merge(commonConfig, developmentConfig, { mode });
+  return merge(commonConfig, developmentConfig, {mode});
 };

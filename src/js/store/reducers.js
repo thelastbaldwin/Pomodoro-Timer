@@ -1,35 +1,30 @@
 import {
   ADD_TASK,
+  CLEAR_COMPLETE,
   COMPLETE_TASK,
   MOVE_TASK,
   REMOVE_TASK,
-  SET_PAUSE,
-  TICK_TASK
+  TIMER_COMPLETE
 } from "./actions";
+import {swap} from "../util";
 
-// import APP_STORAGE_KEY from "../constants";
-
-const swap = (arr, a, b) => {
-  const copy = arr.slice(0);
-  const temp = copy[a];
-  copy[a] = copy[b];
-  copy[b] = temp;
-
-  return copy;
-};
+const SHORT_BREAK_DURATION = 5 * 60;
+const WORK_SESSION_DURATION = 25 * 60;
+const LONG_BREAK_DURATION = 15 * 60;
 
 export default function rootReducer(state = [], action) {
   switch (action.type) {
     case ADD_TASK: {
       // TODO: save the new task list to local storage
-      // window.localStorage.setItem(
-      //   APP_STORAGE_KEY, JSON.stringify(
-      //     {tasks: [...state.tasks, {title: action.payload, complete: false}]}
-      //   )
-      // );
       return {
         ...state,
         tasks: [...state.tasks, {title: action.payload, complete: false}]
+      };
+    }
+    case CLEAR_COMPLETE: {
+      return {
+        ...state,
+        tasks: state.tasks.filter(task => !task.complete)
       };
     }
     case COMPLETE_TASK: {
@@ -71,16 +66,25 @@ export default function rootReducer(state = [], action) {
         tasks: newTasks
       };
     }
-    case TICK_TASK: {
+    case TIMER_COMPLETE: {
+      const {onBreak} = state;
+      // if you weren't on break, increase the count of completed sessions
+      const workSessionsCompleted = !onBreak
+        ? state.workSessionsCompleted + 1
+        : state.workSessionsCompleted;
+      // if you're now on a break, take a long break if you've completed 4 sessions,
+      // otherwise take a short break
+      const timerDuration = !onBreak
+        ? workSessionsCompleted % 4 === 0
+          ? LONG_BREAK_DURATION
+          : SHORT_BREAK_DURATION
+        : WORK_SESSION_DURATION;
+
       return {
         ...state,
-        secondsRemaining: state.secondsRemaining - 1
-      };
-    }
-    case SET_PAUSE: {
-      return {
-        ...state,
-        timerPaused: action.payload
+        onBreak: !onBreak,
+        workSessionsCompleted,
+        timerDuration
       };
     }
     default: {

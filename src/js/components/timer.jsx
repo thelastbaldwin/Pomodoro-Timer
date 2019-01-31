@@ -2,49 +2,71 @@ import React from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
 import styles from "../../css/components/timer.css";
-
-// TODO: move to separate file with a test
-const padZeros = (time = 0, desiredLength = 2) => {
-  let timeString = time.toString();
-  while (timeString.length < desiredLength) {
-    timeString = `0${timeString}`;
-  }
-  return timeString;
-};
+import {padZeros} from "../util";
+import soundClip from "../../audio/alert.mp4";
 
 class Timer extends React.Component {
   constructor(props) {
     super(props);
-    this.interval = window.setInterval(this.tick, 1000);
+
+    this.alarmSound = new Audio(soundClip);
+    this.alarmSound.loop = true;
+    this.state = {
+      paused: true,
+      duration: props.duration,
+      secondsRemaining: props.duration
+    };
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    if (props.duration !== state.duration) {
+      window.clearInterval(this.interval);
+      return {
+        paused: true,
+        duration: props.duration,
+        secondsRemaining: props.duration
+      };
+    }
+
+    return null;
   }
 
   tick = () => {
-    const {
-      onCompleteAction,
-      paused,
-      secondsRemaining,
-      tickAction
-    } = this.props;
+    const newTime = this.state.secondsRemaining - 1;
 
-    if (secondsRemaining <= 0) {
-      onCompleteAction();
-    }
-
-    if (!paused) {
-      tickAction();
+    if (newTime >= 0) {
+      this.setState({secondsRemaining: newTime});
+    } else {
+      this.alarmSound.play();
+      window.clearInterval(this.interval);
+      this.props.timerCompleteAction();
     }
   }
 
   togglePaused = () => {
-    this.props.setPauseAction(!this.props.paused);
+    if (this.state.paused) {
+      this.interval = window.setInterval(this.tick, 1000);
+    } else {
+      window.clearInterval(this.interval);
+    }
+
+    this.alarmSound.pause();
+    this.alarmSound.currentTime = 0;
+    if (this.state.secondsRemaining > 0) {
+      this.setState(state => ({paused: !state.paused}));
+    }
   }
 
   render() {
     const {
-      onBreak,
-      paused,
-      secondsRemaining
-    } = this.props;
+      props: {
+        onBreak
+      },
+      state: {
+        paused,
+        secondsRemaining
+      }
+    } = this;
 
     const minutes = Math.floor(secondsRemaining / 60);
     const seconds = secondsRemaining % 60;
@@ -70,19 +92,14 @@ class Timer extends React.Component {
 
 Timer.defaultProps = {
   onBreak: false,
-  onCompleteAction: () => {},
-  paused: true,
-  secondsRemaining: 0,
-  tickAction: () => {}
+  duration: 0,
+  timerCompleteAction: () => {}
 };
 
 Timer.propTypes = {
   onBreak: PropTypes.bool,
-  onCompleteAction: PropTypes.func,
-  paused: PropTypes.bool,
-  secondsRemaining: PropTypes.number,
-  setPauseAction: PropTypes.func,
-  tickAction: PropTypes.func
+  duration: PropTypes.number,
+  timerCompleteAction: PropTypes.func
 };
 
 export default Timer;
