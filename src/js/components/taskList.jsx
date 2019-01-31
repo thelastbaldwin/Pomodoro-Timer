@@ -3,45 +3,65 @@ import PropTypes from "prop-types";
 import styles from "../../css/components/taskList.css";
 import Task from "./task";
 
+const TaskPlaceholder = () => (
+  <h2 className={styles.placeholder}>
+    You have no tasks in your tasklist
+  </h2>
+);
+
 class TaskList extends React.Component {
   constructor(props) {
     super(props);
     this.newTaskRef = React.createRef();
   }
 
+  renderTasks() {
+    const {
+      completeTaskAction,
+      moveTaskAction,
+      removeTaskAction,
+      tasks
+    } = this.props;
+
+    return (
+      <ul className={styles.tasks}>
+        {
+          tasks.map(
+            (task, index) => (
+              (
+                <Task
+                  index={index}
+                  key={task.title}
+                  title={task.title}
+                  complete={task.complete}
+                  completeTaskAction={completeTaskAction}
+                  removeTaskAction={removeTaskAction}
+                  moveTaskAction={moveTaskAction}
+                />
+              )
+            )
+          )
+        }
+      </ul>
+    );
+  }
+
   render() {
     const {
       tasks,
-      addTaskAction,
-      moveTaskAction,
-      removeTaskAction
+      addTaskAction
     } = this.props;
 
     return (
       <div className={styles.container}>
-        <h1 className={styles.title}>TO DEUX</h1>
-        <ul className={styles.tasks}>
-          {
-            tasks.map(
-              (task, index) => (
-                (
-                  <Task
-                    index={index}
-                    key={task}
-                    title={task}
-                    removeTaskAction={removeTaskAction}
-                    moveTaskAction={moveTaskAction}
-                  />
-                )
-              )
-            )
-          }
-        </ul>
+        {tasks.length ? this.renderTasks() : <TaskPlaceholder />}
         <form onSubmit={(event) => {
           event.preventDefault();
           const newTask = this.newTaskRef.current.value;
-          addTaskAction(newTask);
-          this.newTaskRef.current.value = "";
+          if (newTask) {
+            addTaskAction(newTask);
+            this.newTaskRef.current.value = "";
+          }
         }}
         >
           <fieldset>
@@ -65,15 +85,21 @@ class TaskList extends React.Component {
 
 TaskList.defaultProps = {
   addTaskAction: () => {},
+  completeTaskAction: () => {},
   removeTaskAction: () => {},
-  moveTaskAction: () => {}
+  moveTaskAction: () => {},
+  tasks: []
 };
 
 TaskList.propTypes = {
   addTaskAction: PropTypes.func,
+  completeTaskAction: PropTypes.func,
   removeTaskAction: PropTypes.func,
   moveTaskAction: PropTypes.func,
-  tasks: PropTypes.arrayOf(PropTypes.string)
+  tasks: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string,
+    complete: PropTypes.bool
+  }))
 };
 
 export default TaskList;

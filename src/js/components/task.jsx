@@ -1,28 +1,39 @@
 import React from "react";
 import PropTypes from "prop-types";
+import classnames from "classnames";
 import styles from "../../css/components/task.css";
 
 class Task extends React.Component {
-  moveTaskUp = () => this.props.moveTaskAction(this.props.index, this.props.index - 1)
+  moveTaskUp = (event) => {
+    event.stopPropagation();
+    this.props.moveTaskAction(this.props.index, this.props.index - 1);
+  }
 
-  moveTaskDown = () => this.props.moveTaskAction(this.props.index, this.props.index + 1)
+  moveTaskDown = (event) => {
+    event.stopPropagation();
+    this.props.moveTaskAction(this.props.index, this.props.index + 1);
+  }
 
-  removeTask = () => this.props.removeTaskAction(this.props.index)
+  // TODO: toggle complete after adding "clear completed" option
+  handleClick = () => {
+    this.props.completeTaskAction(this.props.index);
+  }
 
   render() {
     return (
-      <li className={styles.task}>
-        <div className={styles["border-effect"]}>
-          <div
-            className={styles.title}
-            role="button"
-            tabIndex="0"
-            aria-label="complete task"
-            onClick={this.removeTask}
-            onKeyPress={this.removeTask}
-          >
-            <span>{this.props.title}</span>
-          </div>
+      <li className={styles.wrapper}>
+        <div
+          className={classnames(
+            styles.task,
+            {[styles.complete]: this.props.complete}
+          )}
+          onClick={this.handleClick}
+          onKeyPress={this.handleClick}
+          role="button"
+          tabIndex="0"
+          aria-label="complete task"
+        >
+          <h3 className={styles.title}>{this.props.title}</h3>
           <div className={styles.actions}>
             <span
               className={styles.prioritize}
@@ -52,8 +63,10 @@ class Task extends React.Component {
 }
 
 Task.propTypes = {
+  complete: PropTypes.bool,
   index: PropTypes.number,
   title: PropTypes.string,
+  completeTaskAction: PropTypes.func,
   moveTaskAction: PropTypes.func,
   removeTaskAction: PropTypes.func
 };

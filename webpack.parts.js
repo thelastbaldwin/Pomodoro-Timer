@@ -103,8 +103,8 @@ exports.buildJs = (env) => {
         }
       ]
     }
-  }
-}
+  };
+};
 
 exports.optimization = () => ({
   optimization: {

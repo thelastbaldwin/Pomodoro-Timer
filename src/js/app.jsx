@@ -1,23 +1,32 @@
 import {bindActionCreators} from "redux";
 import {connect} from "react-redux";
-import TaskList from "./components/taskList";
+import PomodoroTaskList from "./components/pomodoroTaskList";
 
 import {
   addTaskAction,
+  completeTaskAction,
   moveTaskAction,
-  removeTaskAction
+  removeTaskAction,
+  setPauseAction,
+  tickAction
 } from "./store/actions";
 
 const mapStateToProps = state => ({
-  tasks: state.tasks
+  onBreak: state.onBreak,
+  secondsRemaining: state.secondsRemaining,
+  tasks: state.tasks,
+  timerPaused: state.timerPaused
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   addTaskAction,
+  completeTaskAction,
   moveTaskAction,
-  removeTaskAction
+  removeTaskAction,
+  setPauseAction,
+  tickAction
 }, dispatch);
 
-const App = connect(mapStateToProps, mapDispatchToProps)(TaskList);
+const App = connect(mapStateToProps, mapDispatchToProps)(PomodoroTaskList);
 
 export default App;

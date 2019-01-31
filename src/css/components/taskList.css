@@ -1,52 +1,26 @@
-*{
-  box-sizing: border-box;
-}
-
-body, html{
-  font-size: 16px;
-  font-family: 'Roboto', sans-serif;
-}
-
-input, body, .task{
-  background-color: #333;
-}
-
-body, input{
-  color: #006BDE;
-}
-
-input::-webkit-input-placeholder {
-  color: #006BDE;
-}
-
-input::-moz-input-placeholder {
-  color: #006BDE;
-}
-
-.container,
-.tasks,
-input,
-fieldset {
-  border: 1px solid #006BDE;
-  box-shadow: -2px 2px 5px #000;
-}
-
 .container {
-  width: 75%;
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
   margin: 1em auto 0;
   padding: 1em 0;
 }
 
-
-.title, .actions {
-  text-shadow: -2px 2px 5px #000;
+input{
+  color: #333;
 }
 
-.title {
-  font-size: 8em;
-  line-height: 1.1;
-  text-align: left;
-  margin: 0 0 0 5%;
+input::-webkit-input-placeholder {
+  color: #e3e3e3;
+}
+
+input::-moz-input-placeholder {
+  color: #e3e3e3;
+}
+
+input,
+fieldset {
+  border: 1px solid #e3e3e3;
+  box-shadow: -1px 1px 3px #333;
 }
 
 /* form styles*/
@@ -56,18 +30,17 @@ form{
 
 fieldset {
   margin: 0 auto;
-  width: 90%;
   padding: 1rem;
 }
 
 legend {
-  font-size: 2em;
+  font-size: 1.6em;
 }
 
 input {
   width: 60%;
   margin-right: 6%;
-  font-size: 2em;
+  font-size: 1.6em;
   text-indent: .3em;
 }
 
@@ -77,9 +50,14 @@ input[type="submit"] {
   text-indent: 0;
 }
 
-.tasks{
-  width: 90%;
-  padding: 1rem;
+.placeholder {
+  font-size: 1.4em;
+  font-weight: normal;
+  margin: 0;
+}
+
+.tasks, .placeholder{
   margin: 0 auto;
+  padding: 0;
   list-style: none;
 }

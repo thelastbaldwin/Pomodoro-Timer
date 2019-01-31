@@ -4,10 +4,29 @@ import {createStore} from "redux";
 import {Provider} from "react-redux";
 import rootReducer from "./store/reducers";
 import App from "./app";
+import APP_STORAGE_KEY from "./constants";
 
-const defaultState = {
-  tasks: ["Get a job"]
-};
+
+const defaultState = (() => {
+  const state = {
+    tasks: [],
+    secondsRemaining: 25 * 60,
+    onBreak: false,
+    timerPaused: true
+  };
+
+  // TODO: re-add this feature
+  // if (window.localStorage) {
+  //   let cachedState;
+  //   try {
+  //     cachedState = JSON.parse(window.localStorage.getItem(APP_STORAGE_KEY));
+  //     state = {...state, cachedState} || state;
+  //   } catch (error) {
+  //     window.localStorage.clear();
+  //   }
+  // }
+  return state;
+})();
 
 const store = createStore(
   rootReducer,

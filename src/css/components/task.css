@@ -1,70 +1,30 @@
+.wrapper + .wrapper {
+  margin: 1em auto 0;
+}
+
 .task {
-    margin: 0;
-    position: relative;
-    overflow: hidden;
-    opacity: 1.0;
-    transition: opacity 500ms ease-in-out, background-color 500ms ease-in-out;
-}
-
-.task + .task {
-    margin: 1em auto 0;
-}
-
-.task.hide {
-    opacity: 0;
-    background-color: #006BDE;
-}
-
-.task, .title{
-  height: 75px;
-  font-size: 1.4em;
-}
-
-.border-effect {
-    height: 75px;
-    border-width: 20px;
-    border-color: rgba(0, 0, 0, 0);
-    cursor: pointer;
-    border-style: solid;
-    animation: borderFlash 500ms;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
 }
 
 .title {
-    position: absolute;
-    left: 0;
-    top: 0;
-    user-select: none;
-}
-
-.title span {
+  font-size: 1.4em;
+  font-weight: normal;
+  margin: 0;
   user-select: none;
 }
 
-.border-effect .actions {
+.complete .title {
+  text-decoration: line-through;
+}
+
+.actions {
     font-size: 1.6em;
-    line-height: 1;
-    position: absolute;
-    top: 0;
-    right: 0;
-    display: inline-block;
-    vertical-align: middle;
+    justify-self: flex-end;
 }
 
 .prioritize,
 .deprioritize {
     display: block;
-}
-
-@keyframes borderFlash{
-  from{
-      border-width: 40px;
-      border-color: rgba(0, 0, 0, 0);
-      border-style: solid;
-      opacity: 0;
-  }
-  to{
-      border-width: 0;
-      border-color: rgba(0, 107, 222, 0.5);
-      opacity: 1.0;
-  }
 }
