@@ -18,6 +18,7 @@ module.exports = {
 		"semi": 1,
 		"quotes": ["error", "double"],
     "comma-dangle": ["error", "never"],
+    "linebreak-style": 0,
     "object-curly-spacing": ["error", "never"],
 		"no-plusplus": 0,
     "no-console": 1,
