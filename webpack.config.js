@@ -12,7 +12,7 @@ const htmlPlugin = new HtmlWebPackPlugin({
   filename: "index.html"
 });
 
-const cleanWebpackPlugin = new CleanWebpackPlugin(["dist"])
+const cleanWebpackPlugin = new CleanWebpackPlugin(["docs"])
 
 const commonConfig = merge([
   {
@@ -24,7 +24,7 @@ const commonConfig = merge([
     },
     context: path.resolve("src/"),
     output: {
-      path: path.resolve(__dirname, "dist"),
+      path: path.resolve(__dirname, "docs"),
       filename: "[name].[contenthash].js"
     },
     plugins: [

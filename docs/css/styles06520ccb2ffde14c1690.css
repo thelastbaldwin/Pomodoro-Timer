@@ -1,0 +1,136 @@
+.index_1rzrz {
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
+  margin: 1em auto 0;
+  width: 90%;
+  padding: 1em 0;
+}
+.taskList_2Fu3W {
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
+  margin: 1em auto 0;
+  padding: 1em 0;
+}
+
+.taskList_2Fu3W input{
+  color: #333;
+}
+
+.taskList_2Fu3W input::-webkit-input-placeholder {
+  color: #e3e3e3;
+}
+
+.taskList_2Fu3W input::-moz-input-placeholder {
+  color: #e3e3e3;
+}
+
+.taskList_2Fu3W input,
+.taskList_2Fu3W fieldset {
+  border: 1px solid #e3e3e3;
+  box-shadow: -1px 1px 3px #333;
+}
+
+/* form styles*/
+.taskList_2Fu3W form{
+  margin-top: 1rem;
+}
+
+.taskList_2Fu3W fieldset {
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.taskList_2Fu3W legend {
+  font-size: 1.6em;
+}
+
+.taskList_2Fu3W input {
+  width: 60%;
+  margin-right: 6%;
+  font-size: 1.6em;
+  text-indent: .3em;
+}
+
+.taskList_2Fu3W input[type="submit"] {
+  margin: 0;
+  width: 33%;
+  text-indent: 0;
+}
+
+.taskList_mUDvU {
+  font-size: 1.4em;
+  font-weight: normal;
+  margin: 0;
+}
+
+.taskList_1FS36, .taskList_mUDvU{
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+
+.taskList_3wHUK {
+  margin-top: 1rem;
+  font-size: 1.4em;
+  background: none;
+  border: none;
+  float: right;
+}
+.task_2YDPf + .task_2YDPf {
+  margin: 1em auto 0;
+}
+
+.task_3IOzA {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}
+
+.task_1jze7 {
+  font-size: 1.4em;
+  font-weight: normal;
+  margin: 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.task_2HMId .task_1jze7 {
+  text-decoration: line-through;
+}
+
+.task_1XJaz {
+    font-size: 1.6em;
+    justify-self: flex-end;
+}
+
+.task_zsPSR,
+.task_3jRWf {
+    display: block;
+}
+.timer_uFOCT {
+  font-size: 72px;
+  cursor: pointer;
+}
+
+.timer_2eSoF {
+  color: green;
+}
+
+.timer_2jGRE {
+  -webkit-animation: timer_1aMlU 1s steps(5, start) infinite;
+          animation: timer_1aMlU 1s steps(5, start) infinite;
+}
+
+@-webkit-keyframes timer_1aMlU {
+  to {
+    visibility: hidden;
+  }
+}
+
+@keyframes timer_1aMlU {
+  to {
+    visibility: hidden;
+  }
+}

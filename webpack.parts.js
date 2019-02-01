@@ -62,7 +62,7 @@ exports.loadCSS = ({include, exclude} = {}) => ({
       {
         test: /\.css$/,
         include,
-        exclude: [/node_modules/, /dist/],
+        exclude: [/node_modules/, /docs/],
         use: [
           {
             loader: "style-loader"
@@ -109,7 +109,7 @@ exports.buildJs = (env) => {
         {
           test: /\.jsx?$/,
           enforce: "pre",
-          exclude: [/dist/, /node_modules/, /.spec.js/],
+          exclude: [/docs/, /node_modules/, /.spec.js/],
           use
         },
         {
