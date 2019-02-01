@@ -1,9 +1,9 @@
 {
-  "name": "to_do",
+  "name": "pomodoro-timer",
   "version": "0.1.0",
   "description": "a test to do application written in React and Redux",
   "repository": {
-    "url": "https://github.com/thelastbaldwin/to_do"
+    "url": "https://github.com/thelastbaldwin/Pomodoro-Timer"
   },
   "private": true,
   "scripts": {
