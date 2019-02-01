@@ -1,6 +1,6 @@
 export default {
   workSessionsCompleted: 0,
   tasks: [],
-  timerDuration: 5,
+  timerDuration: 25 * 60,
   onBreak: false
 };

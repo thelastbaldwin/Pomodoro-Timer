@@ -19,7 +19,6 @@ class TaskList extends React.Component {
     const {
       completeTaskAction,
       moveTaskAction,
-      removeTaskAction,
       tasks
     } = this.props;
 
@@ -35,7 +34,6 @@ class TaskList extends React.Component {
                   title={task.title}
                   complete={task.complete}
                   completeTaskAction={completeTaskAction}
-                  removeTaskAction={removeTaskAction}
                   moveTaskAction={moveTaskAction}
                 />
               )
@@ -95,7 +93,6 @@ TaskList.defaultProps = {
   addTaskAction: () => {},
   clearCompleteAction: () => {},
   completeTaskAction: () => {},
-  removeTaskAction: () => {},
   moveTaskAction: () => {},
   tasks: []
 };
@@ -104,7 +101,6 @@ TaskList.propTypes = {
   addTaskAction: PropTypes.func,
   clearCompleteAction: PropTypes.func,
   completeTaskAction: PropTypes.func,
-  removeTaskAction: PropTypes.func,
   moveTaskAction: PropTypes.func,
   tasks: PropTypes.arrayOf(PropTypes.shape({
     title: PropTypes.string,

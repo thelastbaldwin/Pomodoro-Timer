@@ -32,6 +32,7 @@ module.exports = {
     "no-nested-ternary": 0,
     "func-names": 0,
     "arrow-body-style": ["error", "as-needed"],
-    "prefer-arrow-callback": 1
+    "prefer-arrow-callback": 1,
+    "no-unused-expressions": 1
 	}
 }

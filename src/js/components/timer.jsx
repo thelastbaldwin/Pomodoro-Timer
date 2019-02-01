@@ -74,7 +74,13 @@ class Timer extends React.Component {
 
     return (
       <h2
-        className={classnames(styles.timer, {[styles.break]: onBreak})}
+        className={classnames(
+          styles.timer,
+          {
+            [styles.break]: onBreak,
+            [styles.paused]: paused
+          }
+        )}
       >
         <div
           onClick={this.togglePaused}

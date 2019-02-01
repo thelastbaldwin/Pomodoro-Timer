@@ -12,7 +12,6 @@ const PomodoroTaskList = (props) => {
     completeTaskAction,
     moveTaskAction,
     onBreak,
-    removeTaskAction,
     timerCompleteAction,
     timerDuration,
     timerPaused
@@ -30,7 +29,6 @@ const PomodoroTaskList = (props) => {
         addTaskAction={addTaskAction}
         clearCompleteAction={clearCompleteAction}
         completeTaskAction={completeTaskAction}
-        removeTaskAction={removeTaskAction}
         moveTaskAction={moveTaskAction}
         tasks={tasks}
       />
@@ -43,7 +41,6 @@ PomodoroTaskList.defaultProps = {
   clearCompleteAction: () => {},
   completeTaskAction: () => {},
   moveTaskAction: () => {},
-  removeTaskAction: () => {},
   tasks: [],
   timerCompleteAction: () => {},
   timerDuration: 0
@@ -55,7 +52,6 @@ PomodoroTaskList.propTypes = {
   completeTaskAction: PropTypes.func,
   moveTaskAction: PropTypes.func,
   onBreak: PropTypes.bool,
-  removeTaskAction: PropTypes.func,
   timerCompleteAction: PropTypes.func,
   timerDuration: PropTypes.number,
   tasks: PropTypes.arrayOf(PropTypes.shape({

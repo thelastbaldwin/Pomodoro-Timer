@@ -9,7 +9,7 @@
   "scripts": {
     "start": "webpack-dev-server --env development",
     "build": "webpack --env production",
-    "test": "mocha --compilers js:babel-core/register ./src/js/**/*.spec.js"
+    "test": "mocha --require babel-core/register './src/**/*.spec.js'"
   },
   "author": "Steve Minor",
   "license": "ISC",
