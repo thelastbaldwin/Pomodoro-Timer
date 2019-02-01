@@ -10,7 +10,6 @@ import {
   clearCompleteAction,
   completeTaskAction,
   moveTaskAction,
-  removeTaskAction,
   timerCompleteAction
 } from "./store/actionCreators";
 
@@ -25,7 +24,6 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   clearCompleteAction,
   completeTaskAction,
   moveTaskAction,
-  removeTaskAction,
   timerCompleteAction
 }, dispatch);
 

@@ -3,7 +3,6 @@ import {
   CLEAR_COMPLETE,
   COMPLETE_TASK,
   MOVE_TASK,
-  REMOVE_TASK,
   TIMER_COMPLETE
 } from "./actions";
 
@@ -24,11 +23,6 @@ export const completeTaskAction = index => ({
 export const moveTaskAction = (index, newIndex) => ({
   type: MOVE_TASK,
   payload: {index, newIndex}
-});
-
-export const removeTaskAction = index => ({
-  type: REMOVE_TASK,
-  payload: index
 });
 
 export const timerCompleteAction = () => ({

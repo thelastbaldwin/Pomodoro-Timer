@@ -14,7 +14,6 @@ class Task extends React.Component {
     this.props.moveTaskAction(this.props.index, this.props.index + 1);
   }
 
-  // TODO: toggle complete after adding "clear completed" option
   handleClick = () => {
     this.props.completeTaskAction(this.props.index);
   }
