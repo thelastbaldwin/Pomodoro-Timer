@@ -20,7 +20,6 @@ class Timer extends React.Component {
 
   static getDerivedStateFromProps(props, state) {
     if (props.duration !== state.duration) {
-      window.clearInterval(this.interval);
       return {
         paused: true,
         duration: props.duration,
